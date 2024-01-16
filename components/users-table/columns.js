@@ -1,9 +1,10 @@
 "use client";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { onlyLetters } from "@/util";
+import { onlyLetters, removeUser } from "@/util";
 import { Button } from "@/components/ui/button";
 import { Edit, Trash } from "lucide-react";
+import Link from "next/link";
 
 export const columns = [
   {
@@ -24,10 +25,20 @@ export const columns = [
     header: "Actions",
     cell: ({ row }) => (
       <div>
-        <Button variant="ghost" size="icon">
-          <Edit className="h-4 w-4" />
+        <Button asChild variant="ghost" size="icon">
+          <Link href={`/edit/${row.original.id}`}>
+            <Button variant="ghost" size="icon">
+              <Edit className="h-4 w-4" />
+            </Button>
+          </Link>
         </Button>
-        <Button variant="ghost" size="icon">
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={() => {
+            removeUser(row.original.id);
+          }}
+        >
           <Trash className="h-4 w-4" />
         </Button>
       </div>

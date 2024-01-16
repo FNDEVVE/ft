@@ -7,25 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Camera } from "lucide-react";
 
-import { toast } from "sonner";
 import { useRef, useState } from "react";
-
-async function addUser(first_name, last_name, avatar) {
-  if (first_name || last_name) {
-    const res = await fetch("https://reqres.in/api/users", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ first_name, last_name, avatar }),
-    });
-    const json = await res.json();
-    toast(`User "${first_name} ${last_name}" created with ID ${json.id}`);
-  } else {
-    toast("First or last name can't be empty.");
-  }
-}
+import { addUser } from "@/util";
 
 export default function Add() {
   const [avatar, setAvatar] = useState("default.png");

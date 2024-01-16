@@ -7,38 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Camera } from "lucide-react";
 
-import { toast } from "sonner";
 import { useRef, useState, useEffect, useCallback } from "react";
-import { onlyLetters } from "@/util";
-
-async function editUser(id, first_name, last_name, avatar) {
-  if (first_name || last_name) {
-    const res = await fetch(`https://reqres.in/api/users/${id}`, {
-      method: "PATCH",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ first_name, last_name, avatar }),
-    });
-    const json = await res.json();
-    toast(`User with ID ${id} edited to "${first_name} ${last_name}"`);
-  } else {
-    toast("First or last name can't be empty.");
-  }
-}
-
-async function getUser(ID) {
-  const res = await fetch(`https://reqres.in/api/users/${ID}`, {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-  });
-  const json = await res.json();
-  return json.data;
-}
+import { editUser, getUser, onlyLetters } from "@/util";
 
 export default function Edit({ params }) {
   const [profile, setProfile] = useState(null);

@@ -91,7 +91,6 @@ export function DataTable({ columns, data }) {
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => {
-                console.log(row.original);
                 return (
                   <TableRow
                     key={row.id}
