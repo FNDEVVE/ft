@@ -10,8 +10,9 @@ export const columns = [
   {
     accessorKey: "avatar",
     header: "",
+    className: "w-10 md:w-12",
     cell: ({ row }) => (
-      <Avatar className={"size-12"}>
+      <Avatar className={"size-10 md:size-12"}>
         <AvatarImage src={row.getValue("avatar")} className="object-cover" />
         <AvatarFallback>
           {onlyLetters(row.getValue("full_name"))}
@@ -23,12 +24,13 @@ export const columns = [
   {
     id: "actions",
     header: "Actions",
+    className: "w-24 md:w-36",
     cell: ({ row }) => (
-      <div>
+      <div className="-ml-2">
         <Button asChild variant="ghost" size="icon">
           <Link href={`/edit/${row.original.id}`}>
             <Button variant="ghost" size="icon">
-              <Edit className="h-4 w-4" />
+              <Edit className="size-4" />
             </Button>
           </Link>
         </Button>
@@ -39,7 +41,7 @@ export const columns = [
             removeUser(row.original.id);
           }}
         >
-          <Trash className="h-4 w-4" />
+          <Trash className="size-4" />
         </Button>
       </div>
     ),

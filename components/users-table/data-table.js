@@ -49,8 +49,8 @@ export function DataTable({ columns, data }) {
 
   return (
     <div>
-      <div className="flex items-center justify-between p-6 w-full bg-white border-b rounded-t-lg shadow-xl">
-        <div className="flex w-1/3 items-center relative">
+      <div className="flex items-center justify-between p-3 md:p-6 w-full bg-white border-b rounded-t-lg shadow-xl">
+        <div className="flex md:w-1/3 mr-2 items-center relative">
           <Input
             className="pr-8"
             placeholder="Search for users..."
@@ -59,11 +59,11 @@ export function DataTable({ columns, data }) {
               table.getColumn("full_name")?.setFilterValue(event.target.value)
             }
           />
-          <Search className="size-4 absolute right-4" />
+          <Search className="size-3 md:size-4 absolute right-3 md:right-4" />
         </div>
-        <Button asChild>
+        <Button asChild className="bg-green-600">
           <Link href="/add">
-            <UserPlus className="mr-2 size-4" />
+            <UserPlus className="mr-2 size-3 md:size-4" />
             Add user
           </Link>
         </Button>
@@ -75,7 +75,10 @@ export function DataTable({ columns, data }) {
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id}>
+                    <TableHead
+                      key={header.id}
+                      className={`${header.column.columnDef.className || ""} text-base text-gray-900 font-semibold`}
+                    >
                       {header.isPlaceholder
                         ? null
                         : flexRender(
@@ -120,9 +123,8 @@ export function DataTable({ columns, data }) {
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-end space-x-2 py-4">
+      <div className="flex items-center justify-end space-x-1 md:space-x-2 py-2 md:py-4">
         <Button
-          variant="outline"
           size="sm"
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
@@ -130,7 +132,7 @@ export function DataTable({ columns, data }) {
           Previous
         </Button>
         <Button
-          variant="outline"
+          className="bg-green-600"
           size="sm"
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
