@@ -42,7 +42,7 @@ export function DataTable({ columns, data }) {
     },
     initialState: {
       pagination: {
-        pageSize: 6,
+        pageSize: 4,
       },
     },
   });
